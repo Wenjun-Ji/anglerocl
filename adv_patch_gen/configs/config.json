@@ -1,0 +1,61 @@
+{
+    "log_dir": "runs/angle_robust_stop_sign",
+    "tensorboard_port": 6006,
+    "tensorboard_batch_log_interval": 10,
+    "debug_mode": true,
+    "patch_name": "ndda",
+    "augment_image": false,
+    
+    "weights_file": "yolov5s.pt",
+    "model_in_sz": [640, 640],
+    "objective_class_id": 11,
+    "class_list": ["person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "couch", "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"],
+    "n_classes": 80,
+    "loss_target": "obj * cls",
+
+    "n_epochs": 100,
+    "batch_size": 1,
+    "start_lr": 0.001,
+    "patch_save_epoch_freq": 10,
+    "val_epoch_freq": 5,
+    
+    "sd_model_path": "runwayml/stable-diffusion-v1-5",
+    "placeholder_token": "<angle-robust>",
+    "initializer_token": "robust",
+    
+    "ndda_dataset_path": "/zhaotingfeng/jiwenjun/dataset/tkm2261/ndda-dataset/versions/3/diffusion_output/stable_diffusion_2_v2/stop_sign_prompts_test",
+    
+    "loss_weights": {
+        "adversarial": 1.0,
+        "robustness": 2.0,
+        "visual": 0.5
+    },
+    
+    "val_prompts": [
+        "blue square stop sign",
+        "yellow triangle stop sign",
+        "stop sign with checkerboard paint on it"
+    ],
+    
+    "gradient_accumulation_steps": 4,
+    "mixed_precision": "fp16",
+    "report_to": "tensorboard",
+    "logging_dir": "logs",
+    "checkpointing_steps": 500,
+    "save_steps": 500,
+    "validation_steps": 1000,
+    "checkpoints_total_limit": 5,
+    "no_safe_serialization": false,
+    "save_as_full_pipeline": false,
+    "resume_from_checkpoint": null,
+    
+    "timestep_range": [0, 50],
+    
+    "renderer": {
+        "image_size": 512,
+        "fov": 60.0,
+        "distance": 700.0,
+        "longitudes_range": [-85, 85, 5],
+        "latitudes": [0]
+    }
+}
