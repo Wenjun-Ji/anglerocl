@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches">
+  <meta name="description" content="A novel approach for generating angle-robust adversarial patches using text-to-image diffusion models, maintaining high attack effectiveness across multiple viewing angles in physical-world scenarios.">
+  <meta name="keywords" content="adversarial patches, text-to-image diffusion, object detection, angle robustness, physical-world attacks, concept learning, T2I models, computer vision, AI security">
+  <meta name="author" content="Wenjun Ji, Yuxiang Fu, Luyang Ying, Deng-Ping Fan, Yuyi Wang, Ming-Ming Cheng, Ivor Tsang, Qing Guo">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Nankai University">
+  <meta property="og:title" content="AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches">
+  <meta property="og:description" content="A novel approach for generating angle-robust adversarial patches using text-to-image diffusion models, maintaining high attack effectiveness across multiple viewing angles in physical-world scenarios.">
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/anglerocl">
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AngleRoCL - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Wenjun Ji">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="adversarial patches">
+  <meta property="article:tag" content="text-to-image diffusion">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <meta name="twitter:title" content="AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches">
+  <meta name="twitter:description" content="A novel approach for generating angle-robust adversarial patches using text-to-image diffusion models, maintaining high attack effectiveness across multiple viewing angles in physical-world scenarios.">
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="AngleRoCL - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches">
+  <meta name="citation_author" content="Ji, Wenjun">
+  <meta name="citation_author" content="Fu, Yuxiang">
+  <meta name="citation_author" content="Ying, Luyang">
+  <meta name="citation_author" content="Fan, Deng-Ping">
+  <meta name="citation_author" content="Wang, Yuyi">
+  <meta name="citation_author" content="Cheng, Ming-Ming">
+  <meta name="citation_author" content="Tsang, Ivor">
+  <meta name="citation_author" content="Guo, Qing">
+  <meta name="citation_publication_date" content="2024">
+  <meta name="citation_conference_title" content="NeurIPS 2025">
+  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>AngleRoCL: Angle-Robust Concept Learning for T2I Adversarial Patches | NeurIPS 2025</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches",
+    "description": "A novel approach for generating angle-robust adversarial patches using text-to-image diffusion models, maintaining high attack effectiveness across multiple viewing angles in physical-world scenarios.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Wenjun Ji",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Nankai University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Yuxiang Fu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Nankai University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Luyang Ying",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Nankai University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Deng-Ping Fan",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Nankai University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Yuyi Wang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "CRRC Zhuzhou Institute"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Ming-Ming Cheng",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Nankai University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Ivor Tsang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "A*STAR"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Qing Guo",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Nankai University"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "url": "https://YOUR_DOMAIN.com/anglerocl",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["adversarial patches", "text-to-image diffusion", "object detection", "angle robustness", "physical-world attacks", "concept learning"],
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works from Our Lab</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <!-- TODO: Replace with your lab's related works -->
+        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 1</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2024</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 2</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 3</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Wenjun Ji</a><sup>1,2</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Yuxiang Fu</a><sup>1,2</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Luyang Ying</a><sup>1,2</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Deng-Ping Fan</a><sup>1,2</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Yuyi Wang</a><sup>3</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Ming-Ming Cheng</a><sup>1,2</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Ivor Tsang</a><sup>4</sup>,</span>
+              <span class="author-block">
+                <a href="AUTHOR_LINK" target="_blank">Qing Guo</a><sup>1,2✉</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>NKIARI, Shenzhen Futian</span>
+              <span class="author-block"><sup>2</sup>VCIP, CS, Nankai University</span>
+              <span class="author-block"><sup>3</sup>CRRC Zhuzhou Institute</span>
+              <span class="author-block"><sup>4</sup>CFAR and IHPC, Agency for Science, Technology and Research (A*STAR)</span>
+              <br>
+              <span class="author-block"><strong>NeurIPS 2025</strong></span>
+              <br>
+              <span class="eql-cntrb"><small><sup>✉</sup>Corresponding author</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- arXiv Paper -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2506.09538" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Supplementary Material -->
+              <span class="link-block">
+                <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-file-pdf"></i>
+                </span>
+                <span>Supplementary</span>
+              </a>
+            </span>
+
+            <!-- GitHub Code -->
+            <span class="link-block">
+              <a href="https://github.com/tsingqguo/anglerocl" target="_blank"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+            </a>
+          </span>
+
+          <!-- arXiv -->
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2506.09538" target="_blank"
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <i class="ai ai-arxiv"></i>
+            </span>
+            <span>arXiv</span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Teaser image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/fig1.png" alt="AngleRoCL teaser figure showing angle-robust adversarial patches" style="width: 100%; height: auto;" loading="lazy"/>
+      <h2 class="subtitle has-text-centered">
+        <strong>(a)</strong> Intuitive idea of AngleRoCL: incorporating the learned angle-robust concept into textual prompts to generate patches that maintain attack effectiveness across multiple viewing angles. <strong>(b)</strong> Digital and physical deployment results AngleRoCL patches (bottom rows) vs. NDDA baseline (top rows). <strong>(c)</strong> Statistical results across 15 angles, where orange intensity represents attack success rates.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Cutting-edge works have demonstrated that text-to-image (T2I) diffusion models can generate adversarial patches that mislead state-of-the-art object detectors in the physical world, revealing detectors' vulnerabilities and risks. However, these methods neglect the T2I patches' attack effectiveness when observed from different views in the physical world (i.e., angle robustness of the T2I adversarial patches). In this paper, we study the angle robustness of T2I adversarial patches comprehensively, revealing their angle-robust issues, demonstrating that texts affect the angle robustness of generated patches significantly, and task-specific linguistic instructions fail to enhance the angle robustness. Motivated by the studies, we introduce Angle-Robust Concept Learning (AngleRoCL), a simple and flexible approach that learns a generalizable concept (i.e., text embeddings in implementation) representing the capability of generating angle-robust patches. The learned concept can be incorporated into textual prompts and guides T2I models to generate patches with their attack effectiveness inherently resistant to viewpoint variations. Through extensive simulation and physical-world experiments on five SOTA detectors across multiple views, we demonstrate that AngleRoCL significantly enhances the angle robustness of T2I adversarial patches compared to baseline methods. Our patches maintain high attack success rates even under challenging viewing conditions, with over 50% average relative improvement in attack effectiveness across multiple angles. This research advances the understanding of physically angle-robust patches and provides insights into the relationship between textual concepts and physical properties in T2I-generated contents. We released our code at <a href="https://github.com/tsingqguo/anglerocl" target="_blank">https://github.com/tsingqguo/anglerocl</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Empirical Studies on Angle Robustness -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Empirical Studies on Angle Robustness</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-image">
+            <img src="static/images/fig-discuss.jpg" alt="Empirical studies showing angle robustness analysis" style="width: 100%; height: auto;" loading="lazy"/>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            Average detection confidence at different viewing angles across image sets generated by given attack strategy. The y-axis labels indicate average detection confidence and the x-axis labels indicate different viewing angles. The rightmost panel demonstrates removed features: Color (C), Pattern (P), Shape (S), and Text (T). Patch generated by <strong>(a)</strong> NDDA prompt and <strong>(b)</strong> Task-specific instruction prompt.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End empirical studies -->
+
+<!-- Methodology -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Methodology: Angle-Robust Concept Learning (AngleRoCL)</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-image">
+            <img src="static/images/fig2.jpg" alt="AngleRoCL pipeline and inference results" style="width: 100%; height: auto;" loading="lazy"/>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            <strong>(a)</strong> Pipeline of our angle-robust concept learning (AngleRoCL). The latent code represents the learned concept <code>&lt;angle-robust&gt;</code>. <strong>(b)</strong> Shows the inference results when we use the learned concept.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End methodology -->
+
+<!-- Experimental Results -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Experimental Results</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <div class="image-container" style="display: flex; align-items: center; justify-content: center; min-height: 500px;">
+            <img src="static/images/table_digital.png" alt="Digital environment experimental results" style="max-height: 500px; width: auto; max-width: 100%;" loading="lazy"/>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            <strong>Digital Environment Results:</strong> Angle-Aware Attack Success Rate (AASR) across five detectors in six environments, measured from -90° to 90° with 1° intervals. AngleRoCL significantly enhances angle robustness with 51.4% improvement for NDDA and 23.8% for MAGIC.
+          </h2>
+        </div>
+        <div class="item">
+          <div class="image-container" style="display: flex; align-items: center; justify-content: center; min-height: 500px;">
+            <img src="static/images/table_physical.png" alt="Physical environment experimental results" style="max-height: 500px; width: auto; max-width: 100%;" loading="lazy"/>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            <strong>Physical Environment Results:</strong> AASR across five detectors, measured from -70° to 70° with 10° intervals. AngleRoCL achieves 82.4% improvement for NDDA and 189.9% for MAGIC in real-world scenarios.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End experimental results -->
+
+<!-- Ablation Study and Discussion -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Ablation Study and Discussion</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-image">
+            <img src="static/images/ablation.jpg" alt="Ablation study and embedding analysis" style="width: 100%; height: auto;" loading="lazy"/>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            <strong>(a)</strong> Direct optimization shows severe overfitting to training angles (orange) and trained detector (YOLOv5). Our AngleRoCL maintains consistent performance across all conditions. <strong>(b)</strong> Cosine similarity between learned <code>&lt;angle-robust&gt;</code> embedding and top-correlated tokens, revealing meaningful associations with robustness-related features.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End ablation study -->
+
+<!-- Youtube video -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <!-- TODO: Replace with your YouTube video ID -->
+            <iframe src="https://www.youtube.com/embed/isXbK50NfdU?si=L7KjGSRdl7aqj7Vq" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div class="bibtex-header">
+      <h2 class="title">BibTeX</h2>
+      <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+        <i class="fas fa-copy"></i>
+        <span class="copy-text">Copy</span>
+      </button>
+    </div>
+    <pre id="bibtex-code"><code>@inproceedings{Ji2024AngleRoCL,
+  title={AngleRoCL: Angle-Robust Concept Learning for Physically View-Invariant T2I Adversarial Patches},
+  author={Ji, Wenjun and Fu, Yuxiang and Ying, Luyang and Fan, Deng-Ping and Wang, Yuyi and Cheng, Ming-Ming and Tsang, Ivor and Guo, Qing},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+<!--End BibTex citation -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+<!-- End of Statcounter Code -->
+
+</body>
+</html>
